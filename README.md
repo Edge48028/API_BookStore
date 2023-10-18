@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>MyApiNetCore6</title>
-</head>
 <body>
 
-<h1>MyApiNetCore6</h1>
+<h1>Web API .NET Core 6</h1>
 
-<p>MyApiNetCore6 is a versatile ASP.NET Core 6 application with integrated authentication and authorization, user account management, and book information management. The application uses Entity Framework Core to connect and manage a SQL Server database.</p>
+<p>It's a versatile ASP.NET Core 6 application with integrated authentication and authorization, user account management, and book information management. The application uses Entity Framework Core to connect and manage a SQL Server database.</p>
 
 <h2>Main Features</h2>
 
