@@ -5,12 +5,16 @@ namespace MyApiNetCore6.Models
     public class SignUpModel
     {
         [Required(ErrorMessage = "UserName is required")]
-        public string UserName { get; set; } = null!;
+        public string UserName { get; set; }
+
         [Required, EmailAddress(ErrorMessage = "Email is required")]
-        public string Email { get; set; } = null!;
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Password is required")]
-        public string Password { get; set; } = null!;
-        [Required(ErrorMessage = "Comfirm is required")]
-        public string ConfirmPassword { get; set; } = null!;
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm is required")]
+        [Compare("Password", ErrorMessage = "Password and confirmation do not match.")]
+        public string ConfirmPassword { get; set; }
     }
 }
