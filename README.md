@@ -104,7 +104,7 @@
 
 <p>
     - [Hoàng]
-    - [[Link to your GitHub profile](https://github.com/Edge48028)https://github.com/Edge48028]
+    - [[Link to my GitHub profile](https://github.com/Edge48028)]
 </p>
 
 </body>
