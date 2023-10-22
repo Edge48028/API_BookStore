@@ -48,22 +48,16 @@ namespace MyApiNetCore6.Repositories
             {
                 return StatusCode(500, new Response { Status = "Error", Message = "User Creation Failed" });
             }
-            // Thêm tài khoản vào roles
+            // Thêm tài khoản vào roles User
             if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
             if (!await roleManager.RoleExistsAsync(UserRoles.User))
                 await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
             if (await roleManager.RoleExistsAsync(UserRoles.User))
+            // Có thể thay đổi .User ==> .Admin để đăng ký tài khoản Admin
             {
                 await userManager.AddToRoleAsync(user, UserRoles.User);
             }
-            // Thêm tài khoản vào roles
-            if (await roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
-                await userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
-
-
             return Ok(new Response { Status = "Success", Message = "User Created Successfully" });
         }
 
