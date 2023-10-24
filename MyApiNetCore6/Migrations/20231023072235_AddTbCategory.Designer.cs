@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyApiNetCore6.Data;
 
@@ -11,9 +12,10 @@ using MyApiNetCore6.Data;
 namespace MyApiNetCore6.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    partial class BookStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20231023072235_AddTbCategory")]
+    partial class AddTbCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,70 +40,6 @@ namespace MyApiNetCore6.Migrations
                     b.HasKey("TypeCode");
 
                     b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("API_BookStore.Data.Order", b =>
-                {
-                    b.Property<int>("IdOrder")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOrder"), 1L, 1);
-
-                    b.Property<DateTime>("DeliveryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NumberPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<int>("OrderStatus")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Receiver")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ReceiverAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdOrder");
-
-                    b.ToTable("Orders", (string)null);
-                });
-
-            modelBuilder.Entity("API_BookStore.Data.OrderDetail", b =>
-                {
-                    b.Property<int>("IdOrder")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("Discount")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("PurchaseQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<double>("UnitPriceatSale")
-                        .HasColumnType("float");
-
-                    b.HasKey("IdOrder", "Id");
-
-                    b.HasIndex("Id");
-
-                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -313,9 +251,6 @@ namespace MyApiNetCore6.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Discount")
-                        .HasColumnType("tinyint");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -335,27 +270,6 @@ namespace MyApiNetCore6.Migrations
                     b.HasIndex("TypeCode");
 
                     b.ToTable("Book");
-                });
-
-            modelBuilder.Entity("API_BookStore.Data.OrderDetail", b =>
-                {
-                    b.HasOne("MyApiNetCore6.Data.Book", "Book")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_OrderCT_Book");
-
-                    b.HasOne("API_BookStore.Data.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("IdOrder")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_OrderCT_Order");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -421,16 +335,6 @@ namespace MyApiNetCore6.Migrations
             modelBuilder.Entity("API_BookStore.Data.Category", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("API_BookStore.Data.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("MyApiNetCore6.Data.Book", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }
