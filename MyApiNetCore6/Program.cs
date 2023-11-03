@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using API_BookStore.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,10 +28,10 @@ builder.Services.AddDbContext<BookStoreContext>(options => {
 });
 // Add AutoMapper 
 builder.Services.AddAutoMapper(typeof(Program));
-
 // Life cycle DI: AddSingleton(), AddTransient(), AddScoped()
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<ControllerBase, AuthenticationController>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 // Adding Authentication
 builder.Services.AddAuthentication(options => { 
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

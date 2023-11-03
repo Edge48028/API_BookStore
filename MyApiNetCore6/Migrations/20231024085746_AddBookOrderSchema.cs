@@ -15,12 +15,12 @@ namespace MyApiNetCore6.Migrations
                 type: "tinyint",
                 nullable: false,
                 defaultValue: (byte)0);
-
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
                     IdOrder = table.Column<int>(type: "int", nullable: false)
+
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()"),
                     DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),

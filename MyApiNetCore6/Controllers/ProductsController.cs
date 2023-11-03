@@ -34,7 +34,6 @@ namespace MyApiNetCore6.Controllers
             var book = await _bookRepo.GetBookAsync(id);
             return book == null ? NotFound() : Ok(book);
         }
-
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel model)
         {

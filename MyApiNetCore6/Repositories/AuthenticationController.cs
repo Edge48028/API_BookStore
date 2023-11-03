@@ -86,7 +86,7 @@ namespace MyApiNetCore6.Repositories
                     audience: _configuration["JWT:ValidAudience"],
                     expires: DateTime.Now.AddHours(12),
                     claims: authClaims,
-                    signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha512Signature)
+                    signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha256Signature)
                 );
 
                 return Ok(new
