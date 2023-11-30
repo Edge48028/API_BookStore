@@ -110,6 +110,11 @@
     - username : sales, password : 1 (sales role)
 </p>
 
+<p>
+Access: http://localhost:5000/swagger/index.html
+Or public for others to use via IPv4 connection: http://<IPv4>:5000/swagger/index.html
+</p>
+    
 <h2>Author</h2>
 
 <p>
